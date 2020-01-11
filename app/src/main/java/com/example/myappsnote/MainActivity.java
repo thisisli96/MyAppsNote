@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,6 +19,14 @@ public class MainActivity extends AppCompatActivity {
     static ArrayList<String> noted = new ArrayList<String>();
     static ArrayAdapter arrayAdapter;
     ListView listView ;
+
+    public boolean onCreateOptionsMenu(Menu menu){ // menambahkan menu setting di halaman utama
+
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
