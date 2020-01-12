@@ -1,8 +1,10 @@
 package com.example.myappsnote;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,6 +38,23 @@ public class MainActivity extends AppCompatActivity {
 
         arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, noted);
         listView.setAdapter(arrayAdapter);
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                final int itemTodelete = position;
+                new AlertDialog.Builder(MainActivity.this).setIcon(android.R.drawable.ic_dialog_alert)
+                        .setTitle("DELETE !?").setMessage("Are you about delete this note?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                noted.remove(itemTodelete);
+                                arrayAdapter.notifyDataSetChanged();
+                                //Toast.makeText(MainActivity.this, "selamat anda menang", Toast.LENGTH_SHORT).show();
+                            }
+                        }) .setNegativeButton("No", null).show();
+                return true; // kalau false program mengeluarkan alert dan jg go to next activity.
+            }
+        });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
