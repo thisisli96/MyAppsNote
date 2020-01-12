@@ -25,5 +25,9 @@ public class EditNoted extends AppCompatActivity {
        // textchange.setText(positionlist);
         editText.setText(positionlist);
 
+        MainActivity.noted.add(editText.toString());
+        //MainActivity.location.add(latLng);
+        MainActivity.arrayAdapter.notifyDataSetChanged();
+
     }
 }
