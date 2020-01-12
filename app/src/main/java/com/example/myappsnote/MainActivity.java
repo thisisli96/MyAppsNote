@@ -63,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(MainActivity.this, noted.toString(), Toast.LENGTH_SHORT).show(); // to see list array yang di klik
                 Intent intent = new Intent (getApplicationContext(), EditNoted.class);
-                intent.putExtra("position",noted.get(position));
+                //intent.putExtra("position",noted.get(position)); menampilkan yang pertama
+                intent.putExtra("position",position); // menampilkan kedua
                 startActivity(intent);
             }
         });
