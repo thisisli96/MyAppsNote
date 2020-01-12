@@ -2,12 +2,16 @@ package com.example.myappsnote;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.util.HashSet;
 
 public class EditNoted extends AppCompatActivity {
 
@@ -54,6 +58,10 @@ public class EditNoted extends AppCompatActivity {
 
                 MainActivity.noted.set(textwanttoedit, String.valueOf(s));
                 MainActivity.arrayAdapter.notifyDataSetChanged();
+
+                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.myappsnote", Context.MODE_PRIVATE);
+                HashSet <String> set = new HashSet<>(MainActivity.noted);
+                sharedPreferences.edit().putStringSet("noted", set).apply();
             }
 
             @Override
