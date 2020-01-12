@@ -12,6 +12,7 @@ import android.widget.TextView;
 public class EditNoted extends AppCompatActivity {
 
     TextView textchange;
+    int textwanttoedit;
     EditText editText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +34,13 @@ public class EditNoted extends AppCompatActivity {
         // menampilkan yang kedua
 
         Intent intent = getIntent();
-       final int textwanttoedit = intent.getIntExtra("position", -1);
-        if (textwanttoedit != -1){
+     textwanttoedit = intent.getIntExtra("position", -1);
+        if (textwanttoedit != -1){ // untuk edit
             editText.setText(MainActivity.noted.get(textwanttoedit));
+        } else { // untuk tambah
+            MainActivity.noted.add("");
+            textwanttoedit = MainActivity.noted.size()-1;
+
         }
 
         editText.addTextChangedListener(new TextWatcher() {

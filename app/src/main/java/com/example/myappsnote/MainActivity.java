@@ -24,28 +24,7 @@ public class MainActivity extends AppCompatActivity {
     static ArrayAdapter arrayAdapter;
     ListView listView ;
 
-    public boolean onCreateOptionsMenu(Menu menu){ // menambahkan menu setting di halaman utama
 
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.main_menu,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        super.onOptionsItemSelected(item);
-
-
-        switch (item.getItemId()){
-            case R.id.settings:
-                //Log.i("item selected", "settings");
-                Intent gonext = new Intent(getApplicationContext(), AddNote.class);
-                startActivity(gonext);
-                //return true;
-            default:
-                return  false;
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,4 +50,36 @@ public class MainActivity extends AppCompatActivity {
 
     } // on create
 
+    // MENU
+
+    public boolean onCreateOptionsMenu(Menu menu){ // menambahkan menu setting di halaman utama
+
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+        if (item.getItemId() == R.id.add_note){
+            Intent intent = new Intent(getApplicationContext(), EditNoted.class);
+            startActivity(intent);
+            return true;
+        }
+        return false;
+
+//        switch (item.getItemId()){
+//            case R.id.settings:
+//
+//                //Intent gonext = new Intent(getApplicationContext(), AddNote.class);
+//                Intent gonext = new Intent(getApplicationContext(), EditText.class);
+//
+//                startActivity(gonext);
+//                //return true;
+//            default:
+//                return  false;
+//        }
+    }
 }
